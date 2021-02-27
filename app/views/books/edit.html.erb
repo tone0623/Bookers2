@@ -1,3 +1,9 @@
+<% if @book.errors.any? %>
+  <% @book.errors.full_messages.each do |message| %>
+    <%= message %>
+  <% end %>
+<% end %>
+
 <h2>Editing Book</h2>
 <%= form_with model:@book, local:true do |f| %>
   <h4>Title</h4>

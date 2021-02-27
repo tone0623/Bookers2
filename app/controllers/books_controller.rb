@@ -7,10 +7,17 @@ class BooksController < ApplicationController
   def create
     @book = Book.new(book_params)
     @book.user_id = current_user.id
-    @book.save
     
-    #仮
-    redirect_to books_path
+    if @book.save
+      flash[:notice] = "You have creatad book successfully."
+      redirect_to book_path(@book)
+      
+    else
+      flash[:notice] = ' errors prohibited this obj from being saved:'
+      render "new"
+      
+    end
+    
   end
   
   def index
@@ -33,9 +40,16 @@ class BooksController < ApplicationController
   end
   
   def update
-    book = Book.find(params[:id])
-    book.update(book_params)
-    redirect_to book_path(book)
+    @book = Book.find(params[:id])
+    
+    if @book.update(book_params)
+      flash[:notice] = "You have creatad book successfully."
+      redirect_to book_path(@book.id)
+    
+    else
+      flash[:notice]= ' errors prohibited this obj from being saved:'
+      render "edit"
+    end
   end
 
   private
