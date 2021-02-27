@@ -6,7 +6,10 @@
   <p>Title：<%= @book.title %></p>
   <p>body：<%= @book.body %></p>
   
+  
+  
   <% if @book.user == current_user %>
+    <%= link_to "Edit", edit_book_path(@book) %>
     <%= link_to "Destroy", book_path(@book), method: :delete %>
   <% end %>
 </div>
