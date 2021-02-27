@@ -1,4 +1,6 @@
 class ApplicationController < ActionController::Base
+  #ログアウト状態の場合topに遷移
+  before_action :authenticate_user!,except: [:top]
   
   #ログイン,登録前に"configure_permitted_parameters"を実行
   before_action :configure_permitted_parameters, if: :devise_controller?
