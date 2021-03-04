@@ -1,6 +1,6 @@
 class ApplicationController < ActionController::Base
   #ログアウト状態の場合topに遷移
-  before_action :authenticate_user!,except: [:top]
+  before_action :authenticate_user!,except: [:top, :about]
   
   
   
