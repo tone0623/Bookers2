@@ -4,7 +4,7 @@ Rails.application.routes.draw do
     registrations: 'users/registrations'
   }
   
-  get "/about" => "homes#about"
+  get "/home/about" => "homes#about"
   
   resources :users, only: [:show, :edit, :update, :index]
   resources :books, only: [:show, :new, :create, :index,  :destroy, :edit, :update]

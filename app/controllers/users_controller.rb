@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   
-  before_action :check_user, {only: [:edit,:update,:destroy]}
+  before_action :check_user, {only: [:edit,:update]}
   
   def show
     @user = User.find(params[:id])
@@ -29,6 +29,7 @@ class UsersController < ApplicationController
     end
   end
   
+  
   private 
   
   def user_params
@@ -38,7 +39,8 @@ class UsersController < ApplicationController
   def check_user
     @user = User.find(params[:id])
     if @user.id != current_user.id
-      redirect_to users_path
+      redirect_to user_path(current_user)
     end
   end
+
 end
