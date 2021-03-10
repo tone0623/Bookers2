@@ -5,7 +5,19 @@
   <p>name：<%= @user.name %></p>
   <p>Title：<%= @book.title %></p>
   <p>body：<%= @book.body %></p>
-  
+  <% if @book.favorited_by?(current_user)%>
+    <p>
+      <%= link_to book_favorites_path(@book), method: :delete do%>
+        ♥<%= @book.favorites.count %> 
+      <% end %>
+    </p>
+  <% else %>
+    <p>
+      <%= link_to book_favorites_path(@book), method: :post do%>
+        ♡<%= @book.favorites.count %> 
+      <% end %>
+    </p>
+  <% end %>
   
   
   <% if book.user == current_user %>
